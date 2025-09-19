@@ -130,7 +130,7 @@
     
     <!-- Header -->
     <div class="header">
-        <img src="../assets/images/logo.png" alt="OneClick Insurance" class="company-logo" style="display: none;">
+        <img src="../../assets/images/logo.jpg" alt="OneClick Insurance" class="company-logo" style="display: none;">
         <h2 style="margin: 0; color: #0d6efd;">One click Insurance Web Aggregator Pvt .Ltd.</h2>
         <div class="company-info">
             <strong>Phone:</strong> 0120-4344333 |

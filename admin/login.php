@@ -79,7 +79,8 @@ $page_title = 'OneClick Insurance - Admin Login';
                 <div class="col-md-6 col-lg-4">
                     <div class="card login-card border-0">
                         <div class="card-header bg-transparent text-center border-0 py-4">
-                            <i class="bi bi-shield-lock text-primary" style="font-size: 3rem;"></i>
+                            <!-- <i class="bi bi-shield-lock text-primary" style="font-size: 3rem;"></i> -->
+                             <img src="../assets/images/logo.jpg" width="150" alt="">
                             <h3 class="mt-3 mb-1">OneClick Insurance</h3>
                             <p class="text-muted">Admin Portal Login</p>
                         </div>
