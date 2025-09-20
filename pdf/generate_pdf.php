@@ -5,8 +5,7 @@ require_once '../includes/functions.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 redirectIfNotLoggedIn();
 
-// Include DOMPDF library (download from: https://github.com/dompdf/dompdf)
-// require_once 'dompdf/autoload.inc.php';
+
 
 
 use Dompdf\Dompdf;
