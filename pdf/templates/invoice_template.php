@@ -45,6 +45,23 @@
             width: 120px;
             height: auto;
             margin-bottom: 8px;
+            display: block;
+        }
+        
+        .logo-fallback {
+            width: 120px;
+            height: 60px;
+            background: #2c5aa0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.2;
         }
         
         .company-title {
@@ -285,42 +302,30 @@
             margin-top: 15px;
         }
         
-        .digital-signature {
-            border: 1px solid #dee2e6;
-            background: #ffffff;
-            padding: 5px;
-            margin: 10px auto;
-            display: inline-block;
-            border-radius: 4px;
-        }
-        
-        .live-signature {
-            font-family: Arial, sans-serif;
-            font-size: 9px;
-            line-height: 1.2;
-            color: #000;
-            text-align: left;
-            padding: 8px;
-            background: #ffffff;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+        /* Digital Signature Space - Clean */
+        .digital-signature-space {
             width: 200px;
-            margin: 10px auto;
+            height: 80px;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin: 15px auto;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
         
-        .signature-name {
-            font-weight: bold;
-            font-size: 12px;
-            margin-bottom: 3px;
+        .signature-placeholder {
+            color: #999;
+            font-size: 9px;
+            text-align: center;
         }
         
-        .signature-by {
-            color: #0066cc;
-            margin-bottom: 2px;
-        }
-        
-        .signature-date {
-            margin: 1px 0;
+        .signature-image {
+            max-width: 190px;
+            max-height: 70px;
+            object-fit: contain;
         }
         
         .signature-text {
@@ -359,10 +364,42 @@
     <div class="invoice-header">
         <div class="header-left">
             <?php 
-            $logo_path = '../../assets/images/logo.png';
-            if (file_exists($logo_path)): ?>
-                <img src="<?php echo $logo_path; ?>" alt="OneClick Insurance" class="company-logo">
-            <?php endif; ?>
+            // Comprehensive logo detection for PDF
+            $logo_found = false;
+            $possible_paths = [
+                // Relative paths for PDF generation
+                __DIR__ . '/../../assets/images/logo.jpg',
+                __DIR__ . '/../../assets/images/logo.png',
+                __DIR__ . '/../assets/images/logo.jpg', 
+                __DIR__ . '/../assets/images/logo.png',
+                // Absolute paths
+                $_SERVER['DOCUMENT_ROOT'] . '/assets/images/logo.jpg',
+                $_SERVER['DOCUMENT_ROOT'] . '/assets/images/logo.png',
+                // Alternative paths
+                '../../assets/images/logo.jpg',
+                '../../assets/images/logo.png',
+                '../assets/images/logo.jpg',
+                '../assets/images/logo.png',
+                './assets/images/logo.jpg',
+                './assets/images/logo.png'
+            ];
+            
+            foreach ($possible_paths as $logo_path) {
+                if (file_exists($logo_path)) {
+                    // Convert to data URL for PDF compatibility
+                    $imageData = base64_encode(file_get_contents($logo_path));
+                    $imageMime = mime_content_type($logo_path);
+                    echo '<img src="data:' . $imageMime . ';base64,' . $imageData . '" alt="OneClick Insurance" class="company-logo">';
+                    $logo_found = true;
+                    break;
+                }
+            }
+            
+            // Fallback if no logo found
+            if (!$logo_found) {
+                echo '<div class="logo-fallback">OneClick<br>Insurance</div>';
+            }
+            ?>
             <div class="company-title">One click Insurance Web Aggregator Pvt Ltd.</div>
             <div class="company-details">
                 Phone: 0120-4344333 | Email: info@oneclickinsurer.com<br>
@@ -536,31 +573,22 @@
             <div class="signature-area">
                 <div style="margin-bottom: 5px; font-size: 10px;">For One click Insurance Web Aggregator Pvt Ltd.</div>
                 
-                <!-- Live Digital Signature Area -->
-                <?php 
-                $digital_signature_path = '../../uploads/digital_signatures/signature_' . ($_SESSION['admin_id'] ?? 'default') . '.png';
-                if (file_exists($digital_signature_path)): ?>
-                    <div class="digital-signature">
-                        <img src="<?php echo $digital_signature_path; ?>?<?php echo time(); ?>" 
-                             style="width: 200px; height: auto; max-height: 80px; object-fit: contain;" 
-                             alt="Digital Signature">
-                    </div>
-                <?php else: ?>
-                    <!-- Live signature generation with fixed timezone -->
+                <!-- Digital Signature Space - Manual Upload Area -->
+                <div class="digital-signature-space">
                     <?php 
-                    // Set timezone to India
-                    date_default_timezone_set('Asia/Kolkata');
-                    $currentDate = date('Y.m.d');
-                    $currentTime = date('H:i:s');
-                    $timezone = '+05\'30\'';
-                    ?>
-                    <div class="live-signature">
-                        <div class="signature-name">SURAJ VERMA</div>
-                        <div class="signature-by">Digitally signed by SURAJ VERMA</div>
-                        <div class="signature-date">Date: <?php echo $currentDate; ?></div>
-                        <div class="signature-date"><?php echo $currentTime; ?> <?php echo $timezone; ?></div>
-                    </div>
-                <?php endif; ?>
+                    // Check if manual signature exists
+                    $manual_signature = '../../uploads/signatures/signature_manual.png';
+                    if (file_exists($manual_signature)): ?>
+                        <img src="<?php echo $manual_signature; ?>?<?php echo time(); ?>" 
+                             alt="Digital Signature" 
+                             class="signature-image">
+                    <?php else: ?>
+                        <div class="signature-placeholder">
+                            Digital Signature<br>
+                            Space Reserved
+                        </div>
+                    <?php endif; ?>
+                </div>
                 
                 <div class="signature-text">
                     <strong>Suraj Verma</strong><br>

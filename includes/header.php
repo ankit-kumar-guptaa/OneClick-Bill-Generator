@@ -50,6 +50,15 @@ if (session_status() == PHP_SESSION_NONE) {
                             <i class="bi bi-receipt-cutoff"></i> Bills
                         </a>
                     </li>
+                    <!-- Add to admin navigation -->
+<li class="nav-item">
+    <a class="nav-link" href="admin/signed_bills.php">
+        <i class="bi bi-file-pdf-fill text-danger me-2"></i>
+        Signed Bills
+        <span class="badge bg-warning text-dark ms-2">NEW</span>
+    </a>
+</li>
+
                 </ul>
                 
                 <ul class="navbar-nav">
