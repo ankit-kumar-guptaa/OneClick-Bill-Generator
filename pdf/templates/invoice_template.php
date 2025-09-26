@@ -421,20 +421,44 @@
             <div class="info-box">
                 <div class="info-title">Our Details</div>
                 <div class="info-row">
+                    <span class="info-label">Name & Address </span>
+                    <span class="info-value">One click insurance web aggregator Pvt Ltd  <br> S-15 2nd floor master complex sector 5 Noida</span>
+                </div>
+                <div class="info-row">
                     <span class="info-label">GSTIN:</span>
-                    <span class="info-value">09AAKCO5406A1ZE</span>
+                    <span class="info-value">09AADCO7501J1ZC</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">PAN:</span>
-                    <span class="info-value">AAKCO5406A</span>
+                    <span class="info-value">AADCO7501J</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">State Code:</span>
                     <span class="info-value">09 (Uttar Pradesh)</span>
                 </div>
-                <div class="info-row">
+                <!-- <div class="info-row">
                     <span class="info-label">Place of Supply:</span>
                     <span class="info-value">Uttar Pradesh</span>
+                </div> -->
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">Bank Details</div>
+                <div class="info-row">
+                    <span class="info-label">Bank Name:</span>
+                    <span class="info-value">ICICI Bank</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Account Number:</span>
+                    <span class="info-value">777005000040</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">IFSC Code:</span>
+                    <span class="info-value">ICIC0007770</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Branch:</span>
+                    <span class="info-value">NOIDA PHASE 2 NSEZ BRANCH</span>
                 </div>
             </div>
         </div>
@@ -484,7 +508,7 @@
             <tr>
                 <td style="text-align: center;">1</td>
                 <td><?php echo htmlspecialchars($bill['description']); ?></td>
-                <td style="text-align: center;">997158</td>
+                <td style="text-align: center;">997161</td>
                 <td style="text-align: center;">1</td>
                 <td class="amount-right"><?php echo number_format($bill['commission_amount'], 2); ?></td>
                 <td class="amount-right"><?php echo number_format($bill['commission_amount'], 2); ?></td>
