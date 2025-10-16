@@ -1,9 +1,13 @@
 <?php
 class Database {
-    private $host = "localhost";
-    private $db_name = "oneclick_bills";
-    private $username = "root";
-    private $password = "";
+    private $host = "srv839.hstgr.io";
+    private $db_name = "u511651506_oneclick_bills";
+    private $username = "u511651506_oneclick_bills";
+    private $password = "Raja@123321@";
+    // private $host = "localhost";
+    // private $db_name = "oneclick_bills";
+    // private $username = "root";
+    // private $password = "";
     private $conn;
 
     public function getConnection() {
